@@ -1,22 +1,21 @@
 # Patient-Analysis
 Predicts the likelihood of a patient being readmitted within 30 days.
 
-Summary In the code below, I am building a machine learning model that predicts the likelihood of a patient being readmitted within 30 days. In order to create the prediction I used a random forest classifier, which handles both categorical and numerical values. I used train.csv to train the model, validated the models accuracy with dev.csv and finally tested the model using test.csv. In the development phase the model received a ROC AUC score of 0.85 and in the testing phase it scored 0.82.
 
-EDA All datasets have null values in both categorical and numerical columns. Some of the features needed to be encoded because they were non-numeric, object data types. Lastly columns used for targetting or had unique identifiers were dropped from the training dataset.
+Overview
+In the code below, I built a machine learning model to predict the likelihood of a patient being readmitted within 30 days. To generate predictions, I used a Random Forest classifier, which handles both categorical and numerical features. I trained the model using train.csv, validated its accuracy with dev.csv, and finally tested it on test.csv. During the development phase, the model achieved a ROC AUC score of 0.85, and in the testing phase, it scored 0.82.
+
+Exploratory Data Analysis (EDA)
+All datasets contained null values in both categorical and numerical columns. Some features required encoding because they were stored as non-numeric (object) data types. Additionally, columns used for targeting or containing unique identifiers were removed from the training dataset.
 
 Preprocessing
+To prepare the data, I removed any columns that were not part of the feature set. I also dropped the target column from the feature matrix to ensure proper model training. Next, I encoded categorical variables and handled missing values. Numerical columns were preprocessed, and missing values were filled using the median from the train.csv dataset.
 
-To prepare the data for the model I removed any columns that weren't in features. I dropped the target column as well so that the model could run properly. Next I encoded any categorical variables and filled any missing values. Preprocessed any numerical columns and filled missing values with the median from the train.csv dataset.
+Model Choice
+As mentioned above, I selected a Random Forest classifier as my primary model due to its ability to handle both categorical and numerical data, as well as multiple features effectively. I also experimented with XGBoost to improve the ROC AUC score, but it did not outperform the Random Forest model. Initially, my model achieved a score of 0.76; however, after refining the code, I was able to improve performance to above 0.80. Model performance was evaluated using the dev.csv dataset and measured with ROC AUC.
 
-Model choice
+Model Results
+During the development phase, the model achieved a ROC AUC score of 0.85 locally, which matched the score on Codabench. In the testing phase, the local score initially reached 0.99; however, after further refinements, the Codabench score was 0.82.
 
-As mentioned in the summary, I used the random forest classifier as my ML model of choice. This model works well with both categorical and numerical values. Also handles multiple features well. After a few tries with the random forest classifier, I attempted using XGBoost to raise my ROC AUC score but it didn't work as well as my previous method. In my first few attempts I was stuck with a 0.76 score, but after modifying the code I was finally able to boost the score over 0.80. To check model performance I used the dev.csv dataset, then checked the ROC AUC local score to check how it performs.
-
-Model results
-
-In the development phase I locally scored a 0.85, which was the same score in Codabench. In the testing phase I locally scored a 0.99, but after refinements in the code my Codabench score was 0.82.
-
-Interpret the model
-
-To see what features impact a patient being readmitted within 30 days, I created a bar plot visual of the top 10 most important features. The variables that stood out to me the most were age, total procedure cost and total med cost. All of these are important factors if a patient will return to the hospital.
+Model Interpretation
+To understand which features most influenced patient readmission within 30 days, I created a bar plot showing the top 10 most important features. The most impactful variables included age, total procedure cost, and total medication cost. These factors appear to play a significant role in determining whether a patient is likely to return to the hospital.

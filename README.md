@@ -16,7 +16,7 @@ To prepare the data, I removed any columns that were not part of the feature set
 
 Model Choice
 
-As mentioned above, I selected a Random Forest classifier as my primary model due to its ability to handle both categorical and numerical data, as well as multiple features effectively. I also experimented with XGBoost to improve the ROC AUC score, but it did not outperform the Random Forest model. Initially, my model achieved a score of 0.76; however, after refining the code, I was able to improve performance to above 0.80. Model performance was evaluated using the dev.csv dataset and measured with ROC AUC.
+I selected a Random Forest classifier as my primary model due to its ability to handle both categorical and numerical data, as well as multiple features effectively. I also experimented with XGBoost to improve the ROC AUC score, but it did not outperform the Random Forest model. Initially, my model achieved a score of 0.76; however, after refining the code, I was able to improve performance to above 0.80. Model performance was evaluated using the dev.csv dataset and measured with ROC AUC.
 
 Model Results
 

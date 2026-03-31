@@ -2,7 +2,7 @@
 Predicts the likelihood of a patient being readmitted within 30 days.
 
 
-Overview
+Overview:
 In the code below, I built a machine learning model to predict the likelihood of a patient being readmitted within 30 days. To generate predictions, I used a Random Forest classifier, which handles both categorical and numerical features. I trained the model using train.csv, validated its accuracy with dev.csv, and finally tested it on test.csv. During the development phase, the model achieved a ROC AUC score of 0.85, and in the testing phase, it scored 0.82.
 
 Exploratory Data Analysis (EDA)

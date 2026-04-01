@@ -1,27 +1,29 @@
-# Patient-Analysis
-Predicts the likelihood of a patient being readmitted within 30 days.
+## Data Loading and Preprocessing:
 
+The diabetic_data.csv was loaded.
+Target variable readmitted was separated from features.
+Categorical features were handled by filling missing values with "missing" and then LabelEncoder was applied.
+Missing numerical values were imputed with the median.
+The data was split into training (70%) and validation (30%) sets, stratified by the target variable.
 
-Overview
+## Model Training:
 
-In the code below, I built a machine learning model to predict the likelihood of a patient being readmitted within 30 days. To generate predictions, I used a Random Forest classifier, which handles both categorical and numerical features. I trained the model using train.csv, validated its accuracy with dev.csv, and finally tested it on test.csv. During the development phase, the model achieved a ROC AUC score of 0.85, and in the testing phase, it scored 0.82.
+A RandomForestClassifier was trained on the preprocessed training data (X_train_split, y_train_split).
 
-Exploratory Data Analysis (EDA)
+## Prediction:
 
-All datasets contained null values in both categorical and numerical columns. Some features required encoding because they were stored as non-numeric (object) data types. Additionally, columns used for targeting or containing unique identifiers were removed from the training dataset.
+Predictions were made on the validation set (X_val_split) to obtain readmission probability scores (y_proba).
 
-Preprocessing
+## Feature Importance Analysis:
 
-To prepare the data, I removed any columns that were not part of the feature set. I also dropped the target column from the feature matrix to ensure proper model training. Next, I encoded categorical variables and handled missing values. Numerical columns were preprocessed, and missing values were filled using the median from the train.csv dataset.
+The top 10 most influential features according to the RandomForest model were identified and visualized in a bar plot. These included patient_nbr, num_lab_procedures, diag_1, diag_2, diag_3, num_medications, time_in_hospital, age, number_inpatient, and discharge_disposition_id.
+A new binary target readmitted_30_days (1 for readmission within 30 days, 0 otherwise) was created for further analysis.
 
-Model Choice
+## Distribution Graphs:
 
-I selected a Random Forest classifier as my primary model due to its ability to handle both categorical and numerical data, as well as multiple features effectively. I also experimented with XGBoost to improve the ROC AUC score, but it did not outperform the Random Forest model. Initially, my model achieved a score of 0.76; however, after refining the code, I was able to improve performance to above 0.80. Model performance was evaluated using the dev.csv dataset and measured with ROC AUC.
+Distribution plots (histograms and count plots) were generated for selected top features (num_lab_procedures, time_in_hospital, age, number_inpatient) against the readmitted_30_days status. These visualizations helped in understanding how the distributions of these features vary for readmitted vs. non-readmitted patients.
 
-Model Results
+## Correlation Matrix:
 
-During the development phase, the model achieved a ROC AUC score of 0.85 locally, which matched the score on Codabench. In the testing phase, the local score initially reached 0.99; however, after further refinements, the Codabench score was 0.82.
-
-Model Interpretation
-
-To understand which features most influenced patient readmission within 30 days, I created a bar plot showing the top 10 most important features. The most impactful variables included age, total procedure cost, and total medication cost. These factors appear to play a significant role in determining whether a patient is likely to return to the hospital.
+A correlation matrix was computed for the top 10 features and the readmitted_30_days target. This was visualized as a heatmap, providing insights into the linear relationships between these important features and the likelihood of 30-day readmission.
+In essence, the analysis involved preparing the data, building a predictive model, identifying key drivers of readmission, and then performing detailed exploratory data analysis to visualize and understand the relationships between these important features and the 30-day readmission outcome.
